@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div id="wrap">
+			{{jiao}}
+			{{ha}}
+			{{hei}}
+			<div>
+
+				<com-input 
+					:todo="jiao"
+					:button-click="hei"
+					v-on:dianji="qq"
+					>
+					
+				</com-input>
+
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		Vue.component("com-input", {
+			data: function() {
+				return {
+					a: "woshi",
+					s: "haoren",
+					d: "a"
+				}
+			},
+			template: `<ul>
+				<li @click="$emit('dianji',s)">{{a}}</li>
+				<li @click="dianjier">{{s}}</li>
+				<li>{{d}}</li>
+				<li>
+				{{todo}}
+				{{buttonClick}}
+				</li>
+			</ul>`,
+			props:{
+				todo:{
+				type:String,
+				default:null
+				},
+				buttonClick:{
+				type:Boolean,
+				default:"true"
+				}
+			} ,
+			methods:{
+				dianji:function( ){
+					this.a=s;
+				},
+				dianjier:function( ){
+					a:this.s;
+				}
+			}
+			
+			
+		})
+		var zujian = new Vue({
+			el: "#wrap",
+			data: function() {
+				return {
+					jiao: "我是大老黑",
+					ha:"哈喽",
+					hei:false
+				}
+			},
+			methods:{
+				qq:function(data){
+					console.log(data, "data")
+					this.ha=data;
+				}
+			}
+
+		})
+	</script>
+
+</html>

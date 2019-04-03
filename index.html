@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="wrap">
+			{{message}}
+			<div class="ww" v-bind:title="mytitle">
+				{{mytitle}}
+					{{shuangxiang}}
+			</div>
+			<div class="ww" v-if="if1">
+				{{mytitle}}<br />
+				{{message}}
+			</div>
+			<!--<div v-for="(aa,k) in tite">
+				{{k+":"+aa.titeq}}
+			</div>-->
+			<div v-bind:class="[sss]">
+				阿萨飒飒
+			</div>
+			<div 
+				v-bind:class="{zz:vv}"
+				>
+				添加class
+			</div>
+			<div class="cc" v-on:click="dddd">
+				父点击事件
+				<!--<div class="v">
+					<input type="text" v-model="shuangxiang"  />
+				</div>-->
+				<div class="dd" @click.stop="zi">
+					子点击事件
+				</div>
+					
+			</div>
+			<div class="ss">
+			{{jisuan}}
+			</div>
+		</div>
+	</body>
+	<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+//	var a=	document.getElementById("wrap")
+//	a.innerText="我是wrap"
+var a=new Vue({
+	el:"#wrap",
+	data:function(){
+		return{
+		message:"我是wrap",
+		mytitle:"我是title",
+		if1:"true",
+		zz:"aaa",
+		vv:false,
+		sss:"ssss",
+		shuangxiang:""
+		
+		}
+	},
+	methods:{
+		dddd:function(){
+			console.log(this);
+			this.if1=false;
+			this.dddd();
+			console.log("父事件发生")
+		},
+		dddd(){
+			this.message="我是wrap2";
+		},
+		zi:function(e){
+			e.stopPropagation();
+			console.log("子事件发生")
+		}
+	},
+	computed:{
+		jisuan:function(){
+			return this.message.split('').reverse().join('')
+		}
+	}
+})
+	</script>
+</html>
